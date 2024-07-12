@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Caregivers extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'name',
+        'email',
+        'password',
+        'working_day'
+    ];
+
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 }

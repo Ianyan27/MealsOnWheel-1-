@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('caregivers', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger("user_id")->unsigned();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('working_day');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('customers')->onDelete('cascade');
+
         });
     }
 
