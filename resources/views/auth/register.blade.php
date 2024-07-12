@@ -28,6 +28,30 @@
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
+            <div class="mt-4">
+                <x-label for="age" value="{{ __('Age') }}" />
+                <x-input id="age" class="block mt-1 w-full" type="number" min="18" max="105" name="age" required autocomplete="age" />
+            </div>
+            <div class="mt-4">
+                <x-label for="disease" value="{{ __('Disease') }}" />
+                <x-input id="disease" class="block mt-1 w-full" type="text" name="disease" required autocomplete="disease" />
+            </div>
+            <div class="mt-4">
+                <x-label for="disability" value="{{ __('Disability') }}" />
+                <x-input id="disability" class="block mt-1 w-full" type="text" name="disability" required autocomplete="disability" />
+            </div>
+            <div class="mt-4">
+                <x-label for="address" value="{{ __('Address') }}" />
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" required autocomplete="address" />
+            </div>
+            <div class="mt-4">
+                <x-label for="role" value="{{__('Select Role')}}" />
+                <select name="role" required>
+                    <option value="">Choose your role</option>
+                    <option value="customer">Customer</option>
+                    <option value="caregiver">Caregiver</option>
+                </select>
+            </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

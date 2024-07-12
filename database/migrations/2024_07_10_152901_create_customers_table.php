@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('age');
             $table->string('disease');
-            $table->string('disabiilty');
+            $table->string('disability');
             $table->string('address');
             $table->timestamps();
         });
