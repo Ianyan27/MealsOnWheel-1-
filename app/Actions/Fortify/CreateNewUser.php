@@ -17,7 +17,8 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array<string, string>  $input
+     * @param  array  $input
+     * @return \App\Models\User
      */
     public function create(array $input)
     {
@@ -34,14 +35,16 @@ class CreateNewUser implements CreatesNewUsers
 
         if($input['role'] == 'customer'){
             Validator::make($input, [
-                'age'=> ['required','string','11'],
-                'disease'=> ['required','string','255'],
-                'disability'=> ['required','string','255'],
-                'address'=> ['required','string','255'],
-                'phone_number'=> ['required','string','255'],
+                'name'=>['required','string','max:255'],
+                'age'=> ['required','string','max:11'],
+                'disease'=> ['required','string','max:255'],
+                'disability'=> ['required','string','max:255'],
+                'address'=> ['required','string','max:255'],
+                'phone_number'=> ['required','string','max:255'],
             ])->validate();
             $customer = new Customer();
-            $customer->name = $user->id;
+            $customer->customer_id = $user->id;
+            $customer->name = $input['name'];
             $customer->age = $input['age'];
             $customer->disease = $input['disease'];
             $customer->disability = $input['disability'];

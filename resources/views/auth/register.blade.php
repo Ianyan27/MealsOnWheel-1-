@@ -32,17 +32,17 @@ $(document).ready(function(){
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="password" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="password" />
             </div>
             <div class="mt-4">
                 <x-label for="role" value="{{__('Select Role')}}" />
@@ -71,7 +71,7 @@ $(document).ready(function(){
                 </div>
                 <div class="mt-4">
                     <x-label for="phone_number" value="{{ __('Phone Number') }}" />
-                    <x-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" required autocomplete="address" />
+                    <x-input id="phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" name="phone_number" required autocomplete="phone_number" />
                 </div>
             </div>
 
