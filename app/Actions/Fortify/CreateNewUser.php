@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
                 'phone_number'=> ['required','string','max:255'],
             ])->validate();
             $customer = new Customer();
-            $customer->customer_id = $user->id;
+            $customer->user_id = $user->id;
             $customer->name = $input['name'];
             $customer->age = $input['age'];
             $customer->disease = $input['disease'];

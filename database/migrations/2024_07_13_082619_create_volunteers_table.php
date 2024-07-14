@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('volunteers', function (Blueprint $table) {
             $table->id('volunteer_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('volunteer_name');
             $table->string('email');
             $table->string('payment');
             $table->integer('donation_amount');
             $table->string('message');
             $table->timestamp('donation_date');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
