@@ -55,19 +55,11 @@ class CreateNewUser implements CreatesNewUsers
         }
         if($input['role'] == 'caregiver'){
             Validator::make($input, [
-                'name' => ['required','string','255'],
-                'email'=> ['required','string','255'],
-                'password'=> ['required','string','255'],
-                'working_day'=> ['required','string','255'],
+                
             ])->validate();
-
             $caregiver = new Caregivers();
             $caregiver->user_id =$user->id;
-            $caregiver->role = $input['role'];
-            $caregiver->name = $input['name'];
-            $caregiver->email = $input['email'];
-            $caregiver->password = Hash::make($input['password']);
-            $caregiver->working_day = $input['working_day'];
+            $caregiver->working_day = implode(',', $input['working_day']);
             $caregiver->save();
         }
         if($input['role'] == 'deliver'){

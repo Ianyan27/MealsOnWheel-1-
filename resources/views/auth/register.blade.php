@@ -75,6 +75,37 @@ $(document).ready(function(){
                     <x-input id="phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" name="phone_number"  autocomplete="phone_number" />
                 </div>
             </div>
+            <div class="caregiver box">
+                <x-label for="working_day" value = "{{__('Working Day')}}" />
+                <div class="mt-4">
+                    <x-label for="working_day1" value="{{__('Monday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Monday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day2" value="{{__('Tuesday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Tuesday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day3" value="{{__('Wednesday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Wednesday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day4" value="{{__('Thursday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Thursday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day5" value="{{__('Friday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Friday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day6" value="{{__('Saturday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Saturday" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="working_day7" value="{{__('Sunday')}}" />
+                    <x-input id="working_day" type="checkbox" name="working_day[]" value="Sunday" />
+                </div>
+            </div>
             <div class="deliver box">
                 <div class="mt-4">
                     <x-label for="vehicle_type" value="{{__('Vehicle Type')}}" />
