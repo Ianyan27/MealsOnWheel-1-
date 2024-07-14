@@ -46,40 +46,65 @@ $(document).ready(function(){
             </div>
             <div class="mt-4">
                 <x-label for="role" value="{{__('Select Role')}}" />
-                <select name="role" required>
+                <select id='role' name="role"  >
                     <option value="">Choose your role</option>
                     <option value="customer">Customer</option>
                     <option value="caregiver">Caregiver</option>
+                    <option value="deliver">Deliver</option>
                 </select>
             </div>
             <div class="customer box">
                 <div class="mt-4">
                     <x-label for="age" value="{{ __('Age') }}" />
-                    <x-input id="age" class="block mt-1 w-full" type="number" min="18" max="105" name="age" required autocomplete="age" />
+                    <x-input id="age" class="block mt-1 w-full" type="number" min="18" max="105" name="age" autocomplete="age" />
                 </div>
                 <div class="mt-4">
                     <x-label for="disease" value="{{ __('Disease') }}" />
-                    <x-input id="disease" class="block mt-1 w-full" type="text" name="disease" required autocomplete="disease" />
+                    <x-input id="disease" class="block mt-1 w-full" type="text" name="disease" autocomplete="disease" />
                 </div>
                 <div class="mt-4">
                     <x-label for="disability" value="{{ __('Disability') }}" />
-                    <x-input id="disability" class="block mt-1 w-full" type="text" name="disability" required autocomplete="disability" />
+                    <x-input id="disability" class="block mt-1 w-full" type="text" name="disability" autocomplete="disability" />
                 </div>
                 <div class="mt-4">
                     <x-label for="address" value="{{ __('Address') }}" />
-                    <x-input id="address" class="block mt-1 w-full" type="text" name="address" required autocomplete="address" />
+                    <x-input id="address" class="block mt-1 w-full" type="text" name="address"  autocomplete="address" />
                 </div>
                 <div class="mt-4">
                     <x-label for="phone_number" value="{{ __('Phone Number') }}" />
-                    <x-input id="phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" name="phone_number" required autocomplete="phone_number" />
+                    <x-input id="phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" name="phone_number"  autocomplete="phone_number" />
                 </div>
             </div>
-
+            <div class="deliver box">
+                <div class="mt-4">
+                    <x-label for="vehicle_type" value="{{__('Vehicle Type')}}" />
+                    <div>
+                        <input type="radio" id="two_wheeler" name="vehicle" value="two_wheeler">
+                        <label for="two_wheeler">Two Wheeler</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="four_wheeler" name="vehicle" value="four_wheeler">
+                        <label for="four_wheeler">Four Wheeler</label>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <x-label for="company_name" value="{{ __('Company Name') }}" />
+                    <x-input id="company_name" class="block mt-1 w-full" type="text" name="company_name" autocomplete="company_name" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="rider_location" value="{{ __('Location') }}" />
+                    <x-input id="rider_location" class="block mt-1 w-full" type="text" name="rider_location" autocomplete="rider_location" />
+                </div>
+                <div class="mt-4">
+                    <x-label for="rider_phone_number" value="{{ __('Phone Number') }}" />
+                    <x-input id="rider_phone_number" class="block mt-1 w-full" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" name="rider_phone_number"  autocomplete="rider_phone_number" />
+                </div>
+            </div>
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">
                         <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+                            <x-checkbox name="terms" id="terms"   />
 
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [

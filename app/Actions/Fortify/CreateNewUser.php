@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Caregivers;
 use App\Models\Customer;
+use App\Models\Deliver;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -68,6 +69,22 @@ class CreateNewUser implements CreatesNewUsers
             $caregiver->password = Hash::make($input['password']);
             $caregiver->working_day = $input['working_day'];
             $caregiver->save();
+        }
+        if($input['role'] == 'deliver'){
+            Validator::make($input, [
+                'rider_phone_number' => ['required','string','max:255'],
+                'vehicle' => ['required','string','max:255'],
+                'company_name' => ['required','string','max:255'],
+                'rider_location'=> ['required','string','max:255'],
+            ])->validate();
+
+            $deliver = new Deliver();
+            $deliver->user_id =$user->id;
+            $deliver->rider_phone_number = $input['rider_phone_number'];
+            $deliver->vehicle = $input['vehicle'];
+            $deliver->company_name = $input['company_name'];
+            $deliver->rider_location = $input['rider_location'];
+            $deliver->save();
         }
         return $user;
     }
