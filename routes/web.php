@@ -31,6 +31,10 @@ Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/', [CaregiverController::class,'index'])->name('caregiver#index');
     Route::get('/addNewMeals', [CaregiverController::class, 'addNewMeals'])->name('caregiver#addNewMeals');
     Route::post('/saveMeal', [CaregiverController::class, 'saveMeal'])->name('caregiver#saveMeal');
+    Route::get('/viewMeal/{meal_id}', [CaregiverController::class,'viewMeal'])->name('caregiver#viewMeal');
+    Route::get('/deleteMeal/{meal_id}', [CaregiverController::class,'deleteMeal'])->name('caregiver#deleteMeal');
+    Route::get('/updateMeal/{meal_id}', [CaregiverController::class,'updateMeal'])->name('caregiver#updateMeal');
+    Route::post('/saveUpdate/{meal_id}', [CaregiverController::class,'saveUpdate'])->name('caregiver#saveUpdate');
 });
 Route::group(['prefix' => 'deliver'], function () {
     Route::get('/', [DeliverController::class,'index'])->name('deliver#index');

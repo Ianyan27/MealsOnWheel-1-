@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caregivers;
+use App\Models\Customer;
 use App\Models\Meals;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -18,76 +20,14 @@ class CaregiverController extends Controller
      */
     public function index(){
         $caregiverData = Caregivers::where('user_id', Auth::id())->first();
-        return view('Users.Caregiver.caregiverIndex')->with(['caregiverData' => $caregiverData]);
+        $mealData = Meals::all()->where('caregiver_id', $caregiverData->caregiver_id);
+        return view('Users.Caregiver.caregiverIndex')->with(['caregiverData' => $caregiverData, 'mealData'=> $mealData]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     * 
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * 
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
     public function addNewMeals(){
         $caregiverData = Caregivers::where('user_id', Auth::id())->first();
         $userData = User::get();
         return view('Users.Caregiver.caregiverAddNewMeal')->with(['caregiverData' => $caregiverData, 'userData' => $userData]);
     }
-
     public function saveMeal(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -112,5 +52,58 @@ class CaregiverController extends Controller
         $meal->caregiver_id = $request->input('caregiver_id');
         $meal->save();
         return redirect()->route('caregiver#index')->with(['mealAdded' => 'Meal Has Been Created Sucessfully!']);
+    }
+    public function viewMeal($meal_id){
+        $caregiverData = Caregivers::get();
+        $customerData = Customer::get();
+        $viewMeal = Meals::where('meal_id', $meal_id)->first();
+        return view('Users.Caregiver.caregiverViewMeal')->with(['caregiverData' => $caregiverData, 'customerData' => $customerData,'viewMeal'=> $viewMeal]);
+    }
+    public function deleteMeal($meal_id){
+        $deleteData = Meals::select('meal_image')->where('meal_id', $meal_id)->first();
+        $deleteImage = $deleteData['meal_image'];
+        Meals::where('meal_id', $meal_id)->delete();
+        if (File::exists(public_path() . '/uploads/meal/' . $deleteImage)) {
+            File::delete(public_path() . '/uploads/meal/' . $deleteImage);
+        }
+        return redirect()->route('caregiver#index')->with(['mealDeleted'=> 'Meal has been deleted successfully']);
+    }
+    public function updateMeal($meal_id){
+        $caregiverData = Caregivers::where('user_id', Auth::id())->first();
+        $customerData = Customer::get();
+        $updateMeal = Meals::where('meal_id', $meal_id)->first();
+        return view('Users.Caregiver.caregiverUpdateMeal')->with(['caregiverData' => $caregiverData, 'customerData'=> $customerData,'updateMeal'=> $updateMeal]);
+    }
+    public function saveUpdate(Request $request, $meal_id){
+        $updateData = $this->requestUpdateMealData($request);
+
+        $updateImage = Meals::select('meal_image')->where('meal_id', $meal_id)->first();
+        $updateImage = $updateImage['meal_image'];
+
+        if (File::exists(public_path() . '/uploads/meal/' . $updateImage)) {
+            File::delete(public_path() . '/uploads/meal/' . $updateImage);
+        }
+
+        $newImageFile = $request->file('meal_image');
+        $newImageName = uniqid() . '_' . $newImageFile->getClientOriginalName();
+        $newImageFile->move(public_path('./uploads/meal'), $newImageName);
+
+        $updateData['meal_image'] = $newImageName;
+
+        Meals::where('meal_id', $meal_id)->update($updateData);
+        return redirect()->route('caregiver#index')->with(['updateData' => 'Meal has been Updated Sucessfully!']);
+    }
+    public function requestUpdateMEalData(Request $request){
+        $mealArray = [
+            'meal_name' => $request->meal_name,
+            'meal_description'=> $request->meal_description,
+            'caregiver_id'=> $request->caregiver_id,
+            'created_at' => Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ];
+        if(isset($request->meal_image)){
+            $mealArray['meal_image'] = $request->meal_image;
+        }
+        return $mealArray;
     }
 }
