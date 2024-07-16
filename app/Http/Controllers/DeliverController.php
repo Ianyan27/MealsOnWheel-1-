@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Deliver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class DeliverController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(){
-        $customerData = Customer::where('user_id', Auth::id())->first();
-        return view ('Users.Customer.customerIndex')->with(['customerData' => $customerData]);
+        $deliverData = Deliver::where('user_id', Auth::id())->first();
+        return view('Users.Deliver.deliverIndex')->with(['deliverData' => $deliverData]);
     }
 
     /**

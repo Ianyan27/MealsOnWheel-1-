@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Caregivers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class CaregiverController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(){
-        $customerData = Customer::where('user_id', Auth::id())->first();
-        return view ('Users.Customer.customerIndex')->with(['customerData' => $customerData]);
+        $caregiverData = Caregivers::where('user_id', Auth::id())->first();
+        return view('Users.Caregiver.caregiverIndex')->with(['caregiverData' => $caregiverData]);
     }
 
     /**
