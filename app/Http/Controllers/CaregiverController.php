@@ -99,11 +99,26 @@ class CaregiverController extends Controller
             'meal_description'=> $request->meal_description,
             'caregiver_id'=> $request->caregiver_id,
             'created_at' => Carbon::now(),
-            'updated_at'=> Carbon::now(),
+            'updated_at'=> Carbon::now()
         ];
         if(isset($request->meal_image)){
             $mealArray['meal_image'] = $request->meal_image;
         }
         return $mealArray;
     }
+    public function updateProfile($user_id){
+        $caregiverData = Caregivers::where('user_id', $user_id)->first();
+        $userData = User::where('id', $user_id)->first();
+        return view ('Users.Caregiver.caregiverUpdateProfile')->with(['caregiverData' => $caregiverData, 'userData' => $userData]);
+    }
+    
+    public function saveProfile(Request $request, $user_id){
+        $user = User::find($user_id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+    
+        return redirect()->route('caregiver#updateProfile', ['id' => $user_id])->with('success', 'Profile updated successfully');
+    }
+    
 }
