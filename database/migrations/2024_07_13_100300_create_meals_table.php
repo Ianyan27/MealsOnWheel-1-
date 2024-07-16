@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('caregiver_id')->unsigned();
             $table->string('meal_name');
             $table->string('meal_description');
-            $table->string('meal_reviews');
+            $table->string('meal_image');
             $table->timestamps();
             $table->foreign('caregiver_id')->references('caregiver_id')->on('caregivers')->onDelete('cascade');
         });

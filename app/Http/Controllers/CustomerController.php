@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Meals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,5 +63,10 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function viewListMeals(){
+        $mealList = Meals::all();
+        return view ('Users.Customer.customerMealList')->with(['mealList'=> $mealList]);
     }
 }

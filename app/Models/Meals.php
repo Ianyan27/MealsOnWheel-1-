@@ -12,7 +12,7 @@ class Meals extends Model
         'caregiver_id',
         'meal_name',
         'meal_description',
-        'meal_reviews'
+        'meal_image'
     ];
     public function customer(){
         return $this->belongsTo(Customer::class);

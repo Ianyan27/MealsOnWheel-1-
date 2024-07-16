@@ -25,9 +25,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['prefix' => 'customer'], function () {
     Route::get('/', [CustomerController::class,'index'])->name('customer#index');
+    Route::get('/viewListMeals', [CustomerController::class, 'viewListMeals'])->name('customer#viewListMeals');
 });
 Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/', [CaregiverController::class,'index'])->name('caregiver#index');
+    Route::get('/addNewMeals', [CaregiverController::class, 'addNewMeals'])->name('caregiver#addNewMeals');
+    Route::post('/saveMeal', [CaregiverController::class, 'saveMeal'])->name('caregiver#saveMeal');
 });
 Route::group(['prefix' => 'deliver'], function () {
     Route::get('/', [DeliverController::class,'index'])->name('deliver#index');
