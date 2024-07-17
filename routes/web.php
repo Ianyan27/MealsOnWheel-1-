@@ -3,6 +3,7 @@
 use App\Http\Controllers\CaregiverController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliverController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['prefix' => 'customer'], function () {
     Route::get('/', [CustomerController::class,'index'])->name('customer#index');
     Route::get('/viewListMeals', [CustomerController::class, 'viewListMeals'])->name('customer#viewListMeals');
+    Route::get('/viewMeal/{meal_id}', [CustomerController::class,'viewMeal'])->name('customer#viewMeal');
+    Route::get('/orderMeal/{caregiver_id}/{meal_id}/{user_id}', [CustomerController::class,'orderMeal'])->name('customer#orderMeal');
+    Route::post('/saveOrder', [OrderController::class,'saveOrder'])->name('order#saveOrder');
 });
 Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/', [CaregiverController::class,'index'])->name('caregiver#index');

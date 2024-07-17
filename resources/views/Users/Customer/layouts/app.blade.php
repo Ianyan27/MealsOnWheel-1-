@@ -77,15 +77,12 @@ flex-direction: column;">
         <div class="nav-header">
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
             <div id="fh5co-logo"><a href="{{ route('customer#index') }}" ><img src="{{ url('/images/company_logo.png') }}" alt="company logo"></a></div>
-            <!-- START #fh5co-menu-wrap -->
-           <!--Start end if -->
-       
             <nav id="fh5co-menu-wrap" role="navigation">
                     <ul class="sf-menu" id="fh5co-primary-menu">
                         <li class="active">
                             <a href="{{ route('customer#index') }}">Home</a>
                         </li>
-                        <li><a href="{{ route('customer#viewListMeals') }}">Menu</a></li>
+                        <li><a href="{{ route('customer#viewListMeals') }}">Meals</a></li>
                         
                         {{-- <li><a href="/about">About</a></li>
                         <li><a href="/contact">Contact</a></li> --}}
