@@ -45,7 +45,4 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- END What we do -->
-
 @endsection
