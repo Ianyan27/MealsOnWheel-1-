@@ -51,7 +51,7 @@ class CaregiverController extends Controller
         $meal->meal_description = $request->input('meal_description');
         $meal->caregiver_id = $request->input('caregiver_id');
         $meal->save();
-        return redirect()->route('caregiver#index')->with(['mealAdded' => 'Meal Has Been Created Sucessfully!']);
+        return redirect()->route('caregiver#index')->with(['meal_added' => 'Meal Has Been Created Sucessfully!']);
     }
     public function viewMeal($meal_id){
         $caregiverData = Caregivers::get();

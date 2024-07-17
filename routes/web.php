@@ -58,5 +58,9 @@ Route::group(['prefix'=> 'admin'], function () {
     Route::get('/viewDelivers', [AdminController::class,'viewDeliver'])->name('admin#viewDelivers');
     Route::get('/viewOrders', [AdminController::class,'viewOrder'])->name('admin#viewOrders');
     Route::get('/viewFeedbacks', [AdminController::class,'viewFeedback'])->name('admin#viewFeedback');
-    Route::get('/updateProfile/{id}', [AdminController::class,'updateProfile'])->name('admin#updateProfile');
+    Route::get('/updateMeals/{meal_id}', [AdminController::class,'updateMeal'])->name('admin#updateMeal');
+    Route::post('/updatedMeal/{meal_id}', [AdminController::class,'updatedMeal'])->name('admin#updatedMeal');
+    Route::get('/deleteMeal/{meal_id}', [AdminController::class,'deleteMeal'])->name('admin#deleteMeal');
+    Route::get('/addNewMeal', [AdminController::class, 'addNewMeal'])->name('admin#addNewMeal');
+    Route::post('/saveNewMeal', [AdminController::class,'saveNewMeal'])->name('admin#saveNewMeal');
 });

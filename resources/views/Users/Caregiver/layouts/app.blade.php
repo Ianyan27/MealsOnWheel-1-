@@ -57,7 +57,7 @@
               <li class="active">
                 <a href="{{ route('caregiver#index') }}">Home</a>
               </li>
-              <li><a href="{{ route('caregiver#addNewMeals') }}">Menu</a></li>
+              <li><a href="{{ route('caregiver#addNewMeals') }}">Add Meal</a></li>
               <button type="button" class="btn btn-blue dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth()->user()->name }}
               </button>
