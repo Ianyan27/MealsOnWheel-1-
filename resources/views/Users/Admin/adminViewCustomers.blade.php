@@ -9,10 +9,20 @@
 <div id="fh5co-services-section">
     <div class="container">
         @if (Session::has('dataInform'))
-        <h4 class="alert alert-warning animate-box" role="alert">
-            {{ Session::get('dataInform') }}
-        </h4>
-    @endif
+            <h4 class="alert alert-warning animate-box" role="alert">
+                {{ Session::get('dataInform') }}
+            </h4>
+        @endif
+        @if (Session::has('update_customer'))
+            <h4 class="alert alert-warning animate-box" role="alert">
+                {{ Session::get('update_customer') }}
+            </h4>
+        @endif
+        @if (Session::has('delete_customer'))
+            <h4 class="alert alert-warning animate-box" role="alert">
+                {{ Session::get('delete_customer') }}
+            </h4>
+        @endif
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
                 <h3>Customer</h3>
@@ -34,6 +44,12 @@
                         <h3>{{ DB::table('customers')->where('user_id',$customer->user_id)->value('disability')}}</h3>
                         <h3>{{ DB::table('customers')->where('user_id',$customer->user_id)->value('address')}}</h3>
                         <h3>{{ DB::table('customers')->where('user_id',$customer->user_id)->value('phone_number')}}</h3>
+                    </div>
+                    <div class="services animate-box">
+                        <a class="dropdown-item" href="{{ route('admin#updateCustomers', $customer->user_id) }}">Update</a>
+                    </div>
+                    <div class="services animate-box">
+                        <a class="dropdown-item" href="{{ route('admin#deleteCustomers', $customer->user_id) }}">Delete</a>
                     </div>
                 </div>
             @endforeach

@@ -137,4 +137,30 @@ class AdminController extends Controller
         User::where('id', $user_id)->delete();
         return back()->with(['caregiver_deleted' => 'Caregiver has been successfully deleted']);
     }
+
+    public function updateCustomers($user_id){
+        $customerData = Customer::where('user_id', $user_id)->first();
+        $userData = User::where('id', $user_id)->first();
+        return view ('Users.Admin.adminUpdateCustomers')->with(['customerData'=> $customerData, 'userData' => $userData]);
+    }
+    public function updatedCustomer(Request $request, $user_id){
+        $updateCusomter = $this->requestUpdateCustomer($request);
+        Customer::where('user_id', $user_id)->update($updateCusomter);
+        return redirect()->route('admin#viewCustomers')->with(['update_customer' => 'Customer has been successfully updated']);
+    }
+    public function requestUpdateCustomer(Request $request){
+        $customerArry = [
+            'age' => $request->input('age'),
+            'disease'=> $request->input('disease'),
+            'disability'=> $request->input('disability'),
+            'address'=> $request->input('address'),
+            'phone_number'=> $request->input('phone_number'),
+        ];
+        return $customerArry;
+    }
+    public function deleteCustomers($id){
+        Customer::where('user_id', $id)->delete();
+        User::where('id', $id)->delete();
+        return redirect()->route('admin#viewCustomers')->with(['delete_customer' => 'Customer has been successfully deleted']);
+    }
 }
