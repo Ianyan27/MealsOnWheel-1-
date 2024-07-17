@@ -52,4 +52,11 @@ Route::group(['prefix' => 'deliver'], function () {
 });
 Route::group(['prefix'=> 'admin'], function () {
     Route::get('/', [AdminController::class,'index'])->name('admin#index');
+    Route::get('/viewMeals', [AdminController::class,'viewMeals'])->name('admin#viewMeals');
+    Route::get('/viewCustomers', [AdminController::class,'viewCustomer'])->name('admin#viewCustomers');
+    Route::get('/viewCaregivers', [AdminController::class,'viewCaregiver'])->name('admin#viewCaregivers');
+    Route::get('/viewDelivers', [AdminController::class,'viewDeliver'])->name('admin#viewDelivers');
+    Route::get('/viewOrders', [AdminController::class,'viewOrder'])->name('admin#viewOrders');
+    Route::get('/viewFeedbacks', [AdminController::class,'viewFeedback'])->name('admin#viewFeedback');
+    Route::get('/updateProfile/{id}', [AdminController::class,'updateProfile'])->name('admin#updateProfile');
 });

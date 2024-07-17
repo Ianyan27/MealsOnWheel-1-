@@ -55,19 +55,24 @@
           <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
               <li class="active">
-                <a href="{{ route('caregiver#index') }}">Home</a>
+                <a href="{{ route('admin#index') }}">Home</a>
               </li>
-              <li><a href="{{ route('caregiver#addNewMeals') }}">Menu</a></li>
+              <li><a href="{{ route('admin#viewMeals') }}"> View Meals</a></li>
+              <li><a href="{{ route('admin#viewCustomers')}}">View Customers</a></li>
+              <li><a href=" {{ route('admin#viewCaregivers')}} ">View Caregivers</a></li>
+              <li><a href=" {{ route('admin#viewDelivers')}} ">View Deliver</a></li>
+              <li><a href=" {{ route('admin#viewOrders')}} ">View Order</a></li>
+              <li><a href=" {{ route('admin#viewFeedback')}} ">View Feedbacks</a></li>
               <button type="button" class="btn btn-blue dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth()->user()->name }}
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                  <a class="dropdown-item" href="{{ route('caregiver#updateProfile', Auth()->user()->id) }}">Update</a>
+                  <a class="dropdown-item" href="{{ route('admin#updateProfile', Auth()->user()->id) }}">Update</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">
-                    <form action="{{ route('logout') }}" method="post">
+                    <form action="{{ route('logout') }}" method="POST">
                       @csrf
                       <button type="submit" class="btn pt-0 pb-1 px-0 nav-link text-dark">Logout</button>
                     </form>

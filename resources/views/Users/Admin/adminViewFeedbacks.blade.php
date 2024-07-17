@@ -1,9 +1,11 @@
 @section('title')
-    Welcome
+    View Feedbacks
 @endsection
 
 @extends('Users.Admin.layouts.app')
 
 @section('content')
-<h1>Admin Index</h1>
+
+Feedback
+
 @endsection
