@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CaregiverController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliverController;
@@ -20,7 +21,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
             return redirect()->route('caregiver#index');
         } else if (Auth::user()->role == 'deliver') {
             return redirect()->route('deliver#index');
-        } 
+        } else if (Auth::user()->role == 'admin') {
+            return redirect()->route('admin#index');;
+        }
     }
 })->name('welcome');
 
@@ -46,4 +49,7 @@ Route::group(['prefix' => 'caregiver'], function () {
 });
 Route::group(['prefix' => 'deliver'], function () {
     Route::get('/', [DeliverController::class,'index'])->name('deliver#index');
+});
+Route::group(['prefix'=> 'admin'], function () {
+    Route::get('/', [AdminController::class,'index'])->name('admin#index');
 });
