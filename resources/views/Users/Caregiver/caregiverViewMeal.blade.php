@@ -26,11 +26,6 @@
                             <h1>{{ $viewMeal->meal_name }}</h1>
                             <p>{{ $viewMeal->meal_description }}</p>
                         </div>
-                        <div class="col">
-                            {{-- <div class="form-group animate-box">
-                                <a href="{{ route('partner#foodSafety') }}"> <input type="submit" value="Food Safety" class="btn btn-primary"></a>
-                            </div> --}}
-                        </div>
                       </div>
                 </div>						
             </div>

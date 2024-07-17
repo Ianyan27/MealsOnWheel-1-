@@ -1,8 +1,8 @@
-@extends('Users.Customer.layouts.app')
-
 @section('title')
     Update Profile
 @endsection
+
+@extends('Users.Admin.layouts.app')
 
 @section('content')
 <div id="fh5co-services-section">
@@ -12,7 +12,7 @@
                 <div class="animate-box">
                     <div class="col-md-12">
                         <h3>User Information</h3>
-                        <form action="{{ route('caregiver#saveProfile', $userData->id) }}" method="POST">
+                        <form action="{{ route('admin#updatedCaregivers', $userData->id) }}" method="POST">
                             @csrf
                             <label class="userManagement">Name</label><br>
                             <input name="name" class="input-md col-md-12" type="text" value="{{ old('name', $userData->name) }}"/>
@@ -21,7 +21,7 @@
                             <input name='email' class="input-md col-md-12" type="text" value="{{ old('email', $userData->email) }}"/><br><br>
                             <div class="text-center"> 
                                 <button type="submit" class="btn-primary">Update</button> &nbsp;
-                                <a href="{{ route('caregiver#index') }}">Cancel</a>
+                                <a href="{{ route('admin#index') }}">Cancel</a>
                             </div>
                         </form>
                     </div>

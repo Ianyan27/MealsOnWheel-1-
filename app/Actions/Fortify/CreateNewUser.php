@@ -54,9 +54,6 @@ class CreateNewUser implements CreatesNewUsers
             $customer->save();
         }
         if($input['role'] == 'caregiver'){
-            Validator::make($input, [
-                
-            ])->validate();
             $caregiver = new Caregivers();
             $caregiver->user_id =$user->id;
             $caregiver->working_day = implode(',', $input['working_day']);

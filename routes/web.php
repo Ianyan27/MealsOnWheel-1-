@@ -66,4 +66,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/deleteMeal/{meal_id}', [AdminController::class,'deleteMeal'])->name('admin#deleteMeal');
     Route::get('/addNewMeal', [AdminController::class, 'addNewMeal'])->name('admin#addNewMeal');
     Route::post('/saveNewMeal', [AdminController::class,'saveNewMeal'])->name('admin#saveNewMeal');
+
+    Route::post('/updateCaregivers/{id}', [AdminController::class,'updateCaregivers'])->name('admin#updateCaregivers');
+    Route::post('/updatedCaregivers/{id}', [AdminController::class,'updatedCaregivers'])->name('admin#updatedCaregivers');
+    Route::get('/deleteCaregivers/{user_id}', [AdminController::class,'deleteCaregivers'])->name('admin#deleteCaregivers');
+
+    Route::get('/updateCustomers/{customer_id}', [AdminController::class,'updateCustomers'])->name('admin#updateCustomers');
+    Route::get('/updatedCustomer', [AdminController::class,'updatedCustomer'])->name('admin#updatedCustomer');
+    Route::get('/deleteCustomers/{customer_id}', [AdminController::class,'deleteCustomers'])->name('admin#deleteCustomers');
+
+    Route::get('/updateDeliver/{deliver_id}', [AdminController::class,'updateDeliver'])->name('admin#updateDeliver');
+    Route::get('/updatedDeliver', [AdminController::class,'updatedDeliver'])->name('admin#updatedDeliver');
+    Route::get('/deleteDeliver/{deliver_id}', [AdminController::class,'deleteDeliver'])->name('admin#deleteDeliver');
 });

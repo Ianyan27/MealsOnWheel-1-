@@ -119,4 +119,22 @@ class AdminController extends Controller
         $meal->save();
         return redirect()->route('admin#viewMeals')->with(['new_meal_added' => 'Meal Has Been Created Sucessfully!']);
     }
+    public function updateCaregivers($user_id){
+        $caregiverData = Caregivers::where('user_id', $user_id)->first();
+        $userData = User::where('id', $user_id)->first();
+        return view ('Users.Admin.adminUpdateCaregiver')->with(['caregiverData' => $caregiverData, 'userData' => $userData]);
+    }
+    public function updatedCaregivers(Request $request, $id){
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        return redirect()->route('admin#viewCaregivers', ['id' => $id])->with(['updated_caregiver' => 'Caregiver updated successfully']);
+    }
+    
+    public function deleteCaregivers($user_id){
+        Caregivers::where('user_id', $user_id)->delete();
+        User::where('id', $user_id)->delete();
+        return back()->with(['caregiver_deleted' => 'Caregiver has been successfully deleted']);
+    }
 }
