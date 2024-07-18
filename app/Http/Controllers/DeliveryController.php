@@ -40,6 +40,6 @@ class DeliveryController extends Controller
         $delivery_selected->delivery_status = $request->input('delivery_status');
         $delivery_selected->save();
 
-        return redirect()->route('deliver#index')->with('status', 'Delivery updated successfully.');
+        return redirect()->route('delivery#orderList')->with('status', 'Delivery updated successfully.');
     }
 }

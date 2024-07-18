@@ -1,4 +1,4 @@
-@extends('Users.Customer.layouts.app')
+@extends('Users.Deliver.layouts.app')
 
 @section('title')
     Deliver

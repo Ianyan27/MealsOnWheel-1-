@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliverController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,10 +35,12 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('/viewMeal/{meal_id}', [CustomerController::class, 'viewMeal'])->name('customer#viewMeal');
     Route::get('/orderMeal/{caregiver_id}/{meal_id}/{user_id}', [CustomerController::class, 'orderMeal'])->name('customer#orderMeal');
     Route::post('/saveOrder', [OrderController::class, 'saveOrder'])->name('order#saveOrder');
+    Route::get('/showOrderDelivery/{id}', [OrderController::class, 'showOrderDelivery'])->name('customer#showOrderDelivery');
+    Route::get('/updateCustomerOrder/{id}', [CustomerController::class, 'updateCustomerOrder'])->name('customer#updateCustomerOrder');
     Route::get('/updateProfile/{customer_id}', [CustomerController::class, 'updateProfile'])->name('customer#updateProfile');
     Route::post('/profileUpdated/{user_id}', [CustomerController::class, 'saveUpdatedProfile'])->name('customer#profileUpdated');
     Route::get('/feedback/{user_id}/{meal_id}', [CustomerController::class, 'feedback'])->name('customer#feedback');
-    Route::post('/saveFeedback', [CustomerController::class,'saveFeedback'])->name('customer#saveFeedback');
+    Route::post('/saveFeedback', [CustomerController::class, 'saveFeedback'])->name('customer#saveFeedback');
 });
 Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/', [CaregiverController::class, 'index'])->name('caregiver#index');
@@ -65,21 +68,21 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/viewDelivers', [AdminController::class, 'viewDeliver'])->name('admin#viewDelivers');
     Route::get('/viewOrders', [AdminController::class, 'viewOrder'])->name('admin#viewOrders');
     Route::get('/viewFeedbacks', [AdminController::class, 'viewFeedback'])->name('admin#viewFeedback');
-    Route::get('/updateMeals/{meal_id}', [AdminController::class,'updateMeal'])->name('admin#updateMeal');
+    Route::get('/updateMeals/{meal_id}', [AdminController::class, 'updateMeal'])->name('admin#updateMeal');
     Route::post('/updatedMeal/{meal_id}', [AdminController::class, 'updatedMeal'])->name('admin#updatedMeal');
-    Route::get('/deleteMeal/{meal_id}', [AdminController::class,'deleteMeal'])->name('admin#deleteMeal');
+    Route::get('/deleteMeal/{meal_id}', [AdminController::class, 'deleteMeal'])->name('admin#deleteMeal');
     Route::get('/addNewMeal', [AdminController::class, 'addNewMeal'])->name('admin#addNewMeal');
-    Route::post('/saveNewMeal', [AdminController::class,'saveNewMeal'])->name('admin#saveNewMeal');
+    Route::post('/saveNewMeal', [AdminController::class, 'saveNewMeal'])->name('admin#saveNewMeal');
 
-    Route::get('/updateCaregivers/{id}', [AdminController::class,'updateCaregivers'])->name('admin#updateCaregivers');
-    Route::post('/updatedCaregivers/{id}', [AdminController::class,'updatedCaregivers'])->name('admin#updatedCaregivers');
-    Route::get('/deleteCaregivers/{user_id}', [AdminController::class,'deleteCaregivers'])->name('admin#deleteCaregivers');
+    Route::get('/updateCaregivers/{id}', [AdminController::class, 'updateCaregivers'])->name('admin#updateCaregivers');
+    Route::post('/updatedCaregivers/{id}', [AdminController::class, 'updatedCaregivers'])->name('admin#updatedCaregivers');
+    Route::get('/deleteCaregivers/{user_id}', [AdminController::class, 'deleteCaregivers'])->name('admin#deleteCaregivers');
 
-    Route::get('/updateCustomers/{id}', [AdminController::class,'updateCustomers'])->name('admin#updateCustomers');
-    Route::post('/updatedCustomer/{id}', [AdminController::class,'updatedCustomer'])->name('admin#updatedCustomer');
-    Route::get('/deleteCustomers/{user_id}', [AdminController::class,'deleteCustomers'])->name('admin#deleteCustomers');
+    Route::get('/updateCustomers/{id}', [AdminController::class, 'updateCustomers'])->name('admin#updateCustomers');
+    Route::post('/updatedCustomer/{id}', [AdminController::class, 'updatedCustomer'])->name('admin#updatedCustomer');
+    Route::get('/deleteCustomers/{user_id}', [AdminController::class, 'deleteCustomers'])->name('admin#deleteCustomers');
 
-    Route::get('/updateDeliver/{deliver_id}', [AdminController::class,'updateDeliver'])->name('admin#updateDeliver');
-    Route::get('/updatedDeliver', [AdminController::class,'updatedDeliver'])->name('admin#updatedDeliver');
-    Route::get('/deleteDeliver/{deliver_id}', [AdminController::class,'deleteDeliver'])->name('admin#deleteDeliver');
+    Route::get('/updateDeliver/{deliver_id}', [AdminController::class, 'updateDeliver'])->name('admin#updateDeliver');
+    Route::get('/updatedDeliver', [AdminController::class, 'updatedDeliver'])->name('admin#updatedDeliver');
+    Route::get('/deleteDeliver/{deliver_id}', [AdminController::class, 'deleteDeliver'])->name('admin#deleteDeliver');
 });

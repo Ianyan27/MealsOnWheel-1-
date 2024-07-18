@@ -36,4 +36,15 @@ class OrderController extends Controller
 
         return redirect()->route('customer#index')->with(['orderCreated' => 'Your Order has been placed Sucessfully!']);
     }
+
+    public function showOrderDelivery($id)
+    {
+        //show order and delivery status
+        $order_data = Orders::where('user_id', $id)->latest('created_at')->first();
+        $delivery_data = DeliveryRequest::where('user_id', $id)->latest('created_at')->first();
+        return view('Users.Customer.customerOrderDelivery')->with([
+            'orderData' => $order_data,
+            'deliverData' => $delivery_data,
+        ]);
+    }
 }
