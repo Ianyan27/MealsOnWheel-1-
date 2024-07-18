@@ -48,6 +48,7 @@ $(document).ready(function(){
                     <option value="customer">Customer</option>
                     <option value="caregiver">Caregiver</option>
                     <option value="deliver">Deliver</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="customer box">

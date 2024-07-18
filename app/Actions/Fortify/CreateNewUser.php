@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Admin;
 use App\Models\Caregivers;
 use App\Models\Customer;
 use App\Models\Deliver;
@@ -74,6 +75,11 @@ class CreateNewUser implements CreatesNewUsers
             $deliver->company_name = $input['company_name'];
             $deliver->rider_location = $input['rider_location'];
             $deliver->save();
+        }
+        if($input['role'] == 'admin'){
+            $admin = new Admin();
+            $admin->user_id =$user->id;
+            $admin->save();
         }
         return $user;
     }
