@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Caregivers;
 use App\Models\Customer;
+use App\Models\Feedback;
 use App\Models\Meals;
 use App\Models\User;
 use Carbon\Carbon;
@@ -61,11 +62,14 @@ class CustomerController extends Controller
         $userData = User::get();
         $customerData = Customer::where('user_id', Auth::id())->first();
         $mealData = Meals::where('meal_id', $meal_id)->first();
+        $feedback = Feedback::where('meal_id', $meal_id)->first();
         return view ('Users.Customer.customerViewMeal')->with([
             'caregiverData' => $caregiverData,
             'userData'=> $userData,
             'mealData'=> $mealData, 
-            'customerData'=> $customerData]);
+            'customerData'=> $customerData,
+            'feedback'=> $feedback
+        ]);
     }
     public function orderMeal($caregiver_id, $meal_id, $user_id){
         $careGiverData = Caregivers::where('caregiver_id', $caregiver_id)->first();
@@ -78,5 +82,19 @@ class CustomerController extends Controller
             'userData' => $userData,
             'customerData' => $customerData,
         ]);
+    }
+    public function feedback($user_id, $meal_id){
+        $userData = User::where('id', $user_id);
+        $mealData = Meals::where('meal_id', $meal_id)->first();
+        return view('Users.Customer.customerWriteFeedback')->with(['userData'=> $userData,'mealData'=> $mealData]);
+    }
+    public function saveFeedback(Request $request){
+        $feedback = new Feedback();
+        $feedback->user_id = $request->input('user_id');
+        $feedback->meal_id = $request->input('meal_id');
+        $feedback->name = $request->input('name');
+        $feedback->feedback = $request->input('feedback');
+        $feedback->save();
+        return redirect()->route('customer#index')->with('feedback_sent','Feedback Successfully Added');
     }
 }

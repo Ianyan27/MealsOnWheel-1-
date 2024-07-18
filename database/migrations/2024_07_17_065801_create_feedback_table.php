@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id('feedback_id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('meal_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('feedback');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('meal_id')->references('meal_id')->on('meals')->onDelete('cascade');
             $table->timestamps();
         });
     }

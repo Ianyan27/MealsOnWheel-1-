@@ -35,6 +35,8 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('/saveOrder', [OrderController::class, 'saveOrder'])->name('order#saveOrder');
     Route::get('/updateProfile/{customer_id}', [CustomerController::class, 'updateProfile'])->name('customer#updateProfile');
     Route::post('/profileUpdated/{user_id}', [CustomerController::class, 'saveUpdatedProfile'])->name('customer#profileUpdated');
+    Route::get('/feedback/{user_id}/{meal_id}', [CustomerController::class, 'feedback'])->name('customer#feedback');
+    Route::post('/saveFeedback', [CustomerController::class,'saveFeedback'])->name('customer#saveFeedback');
 });
 Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/', [CaregiverController::class, 'index'])->name('caregiver#index');

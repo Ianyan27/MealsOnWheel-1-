@@ -28,18 +28,20 @@
 								<div class="feature-text animate-box">
                                 	<h1>{{ $mealData->meal_name }}</h1>
                                 	<p>{{ $mealData->meal_description }}</p>
+									<p> {{$feedback->name ?? 'Anonymous'}} </p>
+									<p>This is the feedback ( {{$feedback->feedback}} )</p>
 								</div>
-								<div class="col">
-									{{-- <div class="form-group animate-box">
-										<a href="{{ route('member#foodSafety') }}"> <input type="submit" value="Food Safety" class="btn btn-primary"></a>
-									</div> --}}
+								<div class="">
+									<a href=" {{ route('customer#feedback', ['user_id' => Auth()->user()->id, 'meal_id' => $mealData-> meal_id ])}} ">Write Feedback</a>
 								</div>
                               </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-1">
                                 <div class="form-group animate-box">
-                                    <a href="{{ route('customer#orderMeal', [ 'caregiver_id' => $mealData -> caregiver_id, 'meal_id' => $mealData-> meal_id, 'user_id' => Auth()->user()->id]) }}"> <input type="submit" value="Order" class="btn btn-primary"></a>
+                                    <a href="{{ route('customer#orderMeal', [ 'caregiver_id' => $mealData -> caregiver_id, 'meal_id' => $mealData-> meal_id, 'user_id' => Auth()->user()->id]) }}"> 
+										<input type="submit" value="Order" class="btn btn-primary">
+									</a>
                                 </div>
                             </div>
                         </div>
