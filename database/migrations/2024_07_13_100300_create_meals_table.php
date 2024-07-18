@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('meal_name');
             $table->string('meal_description');
             $table->string('meal_image');
+            $table->string('meal_type');
+            $table->string('day');
             $table->timestamps();
             $table->foreign('caregiver_id')->references('caregiver_id')->on('caregivers')->onDelete('cascade');
         });

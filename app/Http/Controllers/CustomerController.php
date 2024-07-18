@@ -59,11 +59,17 @@ class CustomerController extends Controller
         ];
         return $customerArray;
     }
-    public function viewListMeals()
+    public function viewListMeals(Request $request)
     {
-        $mealList = Meals::all();
+        $day = $request->input('day');
+
+        $mealList = Meals::when($day, function ($query, $day) {
+            return $query->where('day', $day);
+        })->get();
+
         return view('Users.Customer.customerMealList')->with(['mealList' => $mealList]);
     }
+
     public function viewMeal($meal_id)
     {
         $caregiverData = Caregivers::get();
@@ -71,14 +77,25 @@ class CustomerController extends Controller
         $customerData = Customer::where('user_id', Auth::id())->first();
         $mealData = Meals::where('meal_id', $meal_id)->first();
         $feedback = Feedback::where('meal_id', $meal_id)->first();
+
+        $mealType = $mealData->meal_type;
+        $mealDay = $mealData->day;
+
+        $relatedMeals = Meals::where('meal_type', $mealType)
+            ->where('day', $mealDay)
+            ->where('meal_id', '!=', $meal_id)
+            ->get();
+
         return view('Users.Customer.customerViewMeal')->with([
             'caregiverData' => $caregiverData,
             'userData' => $userData,
             'mealData' => $mealData,
             'customerData' => $customerData,
-            'feedback' => $feedback
+            'feedback' => $feedback,
+            'relatedMeals' => $relatedMeals
         ]);
     }
+
     public function orderMeal($caregiver_id, $meal_id, $user_id)
     {
         $careGiverData = Caregivers::where('caregiver_id', $caregiver_id)->first();

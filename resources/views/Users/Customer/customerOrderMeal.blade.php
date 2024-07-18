@@ -1,17 +1,8 @@
-@section('title')
-    Confirm Your Order
-@endsection
-
 @extends('Users.Customer.layouts.app')
 
-@section('content')
-    <?php
-    $caregiver_id = DB::table('meals')
-        ->where('caregiver_id', $caregiverData->caregiver_id)
-        ->value('caregiver_id');
-    $caregiver_user_id = DB::table('caregivers')->where('caregiver_id', $caregiver_id)->value('user_id');
-    ?>
+@section('title', 'Confirm Your Order')
 
+@section('content')
     <div style="margin: 60px;">
         <a href="javascript:history.go(-1)" style="text-decoration: underline; color: blue;">Click here to cancel order and go
             back to menu</a>
@@ -87,15 +78,15 @@
             </div>
         </div>
     </div>
-
-    <!-- JavaScript files -->
-    <script src="{{ asset('js/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.easing.1.3.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.waypoints.min.js') }}" defer></script>
-    <script src="{{ asset('js/sticky.js') }}"></script>
-    <script src="{{ asset('js/jquery.stellar.min.js') }}" defer></script>
-    <script src="{{ asset('js/hoverIntent.js') }}" defer></script>
-    <script src="{{ asset('js/superfish.js') }}" defer></script>
-    <script src="{{ asset('js/main.js') }}" defer></script>
 @endsection
+
+<!-- JavaScript files -->
+<script src="{{ asset('js/jquery.min.js') }}" defer></script>
+<script src="{{ asset('js/jquery.easing.1.3.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+<script src="{{ asset('js/jquery.waypoints.min.js') }}" defer></script>
+<script src="{{ asset('js/sticky.js') }}"></script>
+<script src="{{ asset('js/jquery.stellar.min.js') }}" defer></script>
+<script src="{{ asset('js/hoverIntent.js') }}" defer></script>
+<script src="{{ asset('js/superfish.js') }}" defer></script>
+<script src="{{ asset('js/main.js') }}" defer></script>

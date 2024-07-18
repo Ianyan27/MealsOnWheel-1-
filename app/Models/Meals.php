@@ -12,9 +12,12 @@ class Meals extends Model
         'caregiver_id',
         'meal_name',
         'meal_description',
-        'meal_image'
+        'meal_image',
+        'meal_type',
+        'day'
     ];
-    public function customer(){
+    public function customer()
+    {
         return $this->belongsTo(Customer::class);
     }
 }
