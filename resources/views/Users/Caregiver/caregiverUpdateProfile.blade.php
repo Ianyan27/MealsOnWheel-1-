@@ -16,9 +16,10 @@
                             @csrf
                             <label class="userManagement">Name</label><br>
                             <input name="name" class="input-md col-md-12" type="text" value="{{ old('name', $userData->name) }}"/>
-
                             <label class="userManagement">Email</label><br>
                             <input name='email' class="input-md col-md-12" type="text" value="{{ old('email', $userData->email) }}"/><br><br>
+                            <label class="userManagement">Working Day</label><br>
+                            <input name='working_day' class="input-md col-md-12" type="text" value="{{ old('email', $caregiverData->working_day) }}"/><br><br>
                             <div class="text-center"> 
                                 <button type="submit" class="btn-primary">Update</button> &nbsp;
                                 <a href="{{ route('caregiver#index') }}">Cancel</a>
