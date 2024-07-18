@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryRequest;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function saveOrder(Request $request){
+    public function saveOrder(Request $request)
+    {
         $orders = new Orders();
         $orders->customer_name = $request->input("customer_name");
         $orders->customer_address = $request->input("customer_address");
@@ -19,6 +21,19 @@ class OrderController extends Controller
         $orders->meal_id = $request->input("meal_id");
         $orders->caregiver_id = $request->input("caregiver_id");
         $orders->save();
+
+        $deliveryRequest = new DeliveryRequest();
+        $deliveryRequest->caregiver_id = $request->input("caregiver_id");
+        $deliveryRequest->meal_id = $request->input("meal_id");
+        $deliveryRequest->user_id = $request->input("user_id");
+        $deliveryRequest->delivery_meal_name = $request->input("order_meal_name");
+        $deliveryRequest->start_delivery_time = null;
+        $deliveryRequest->delivery_status = 'pending'; // Default status
+        $deliveryRequest->caregiver_name = $request->input("caregiver_name");
+        $deliveryRequest->deliver_name = $request->input("deliver_name");
+        $deliveryRequest->save();
+
+
         return redirect()->route('customer#index')->with(['orderCreated' => 'Your Order has been placed Sucessfully!']);
     }
 }

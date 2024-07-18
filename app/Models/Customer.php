@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $primaryKey = 'customer_id';
+
     use HasFactory;
     protected $fillable = [
         'user_id',
@@ -17,7 +19,8 @@ class Customer extends Model
         'address',
         'phone_number'
     ];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

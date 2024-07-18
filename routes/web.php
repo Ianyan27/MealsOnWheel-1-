@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CaregiverController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliverController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,8 @@ Route::group(['prefix' => 'caregiver'], function () {
 });
 Route::group(['prefix' => 'deliver'], function () {
     Route::get('/', [DeliverController::class, 'index'])->name('deliver#index');
-    Route::get('/updateDelivery/{id}', [DeliverController::class, 'updateDelivery'])->name('delivery#updateDelivery');
+    Route::get('/deliverOrderList', [DeliveryController::class, 'AllDeliveryForOrder'])->name('delivery#orderList');
+    Route::get('/updateDelivery/{id}', [DeliveryController::class, 'updateDelivery'])->name('delivery#updateDelivery');
 });
 
 
