@@ -14,9 +14,11 @@ class Volunteers extends Model
         'email',
         'payment',
         'donation_amount',
-        'message'
+        'message',
+        'donation_date'
     ];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
