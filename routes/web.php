@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliverController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\VolunteerController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
             return redirect()->route('caregiver#index');
         } else if (Auth::user()->role == 'deliver') {
             return redirect()->route('deliver#index');
+        } else if (Auth::user()->role == 'volunteer') {
+            return redirect()->route('volunteer#index');
         } else if (Auth::user()->role == 'admin') {
             return redirect()->route('admin#index');;
         }
@@ -53,12 +56,18 @@ Route::group(['prefix' => 'caregiver'], function () {
     Route::get('/updateProfile/{id}', [CaregiverController::class, 'updateProfile'])->name('caregiver#updateProfile');
     Route::post('/updateProfile/{id}', [CaregiverController::class, 'saveProfile'])->name('caregiver#saveProfile');
 });
+
 Route::group(['prefix' => 'deliver'], function () {
     Route::get('/', [DeliverController::class, 'index'])->name('deliver#index');
     Route::get('/deliverOrderList', [DeliveryController::class, 'AllDeliveryForOrder'])->name('delivery#orderList');
     Route::get('/updateDelivery/{id}', [DeliveryController::class, 'updateDelivery'])->name('delivery#updateDelivery');
 });
 
+Route::group(['prefix' => 'volunteer'], function () {
+    Route::get('/', [VolunteerController::class, 'index'])->name('volunteer#index');
+    Route::get('/donate', [VolunteerController::class, 'showDonateForm'])->name('volunteer#donateForm');
+    Route::post('/donate', [VolunteerController::class, 'donate'])->name('volunteer#donate');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin#index');

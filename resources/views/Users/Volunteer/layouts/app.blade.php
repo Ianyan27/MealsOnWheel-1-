@@ -84,9 +84,9 @@ flex-direction: column;">
                 <nav id="fh5co-menu-wrap" role="navigation">
                     <ul class="sf-menu" id="fh5co-primary-menu">
                         <li class="active">
-                            <a href="{{ route('deliver#index') }}">Home</a>
+                            <a href="{{ route('volunteer#index') }}">Home</a>
                         </li>
-                        <li><a href="{{ route('delivery#orderList') }}">Order List</a></li>
+                        <li><a href="{{ route('volunteer#donateForm') }}">Donate</a></li>
 
                         {{-- <li><a href="/about">About</a></li>
                         <li><a href="/contact">Contact</a></li> --}}
