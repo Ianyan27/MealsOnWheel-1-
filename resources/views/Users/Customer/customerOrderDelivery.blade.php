@@ -3,12 +3,14 @@
 @section('title', 'Order Delivery')
 
 @section('content')
-    <div class="row container">
-        <div class="mb-5 col-md-12">
-            <a href="{{ route('customer#viewListMeals') }}" class="btn btn-primary">Order Meal</a>
-        </div>
-        <table class="table table-responsive table-hover">
-            <thead>
+<div class="container mt-5">
+    <div class="mb-4 text-center">
+        <a href="{{ route('customer#viewListMeals') }}" class="btn btn-primary">Order Meal</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
                 <tr>
                     <th>No.</th>
                     <th>Caregiver Name</th>
@@ -37,13 +39,14 @@
                     <td>{{ $deliverData->delivery_status }}</td>
                     <td>
                         <form action="{{ route('customer#updateCustomerOrder', $orderData->order_id) }}" method="GET">
-                            <input type="text" name="order_received_status" value="{{ $orderData->order_pickup_time }}"
-                                readonly />
-                            <button type="submit" class="btn btn-primary">Received?</button>
+                            <input type="text" name="order_received_status" value="{{ $orderData->order_pickup_time }}" class="form-control-plaintext" readonly />
+                            <button type="submit" class="btn btn-primary mt-2">Received?</button>
                         </form>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
+
 @endsection

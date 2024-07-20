@@ -27,7 +27,6 @@
               {{ Auth()->user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{{ route('caregiver#updateProfile', Auth()->user()->id) }}">Update</a>
               <form class="form-inline" action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="btn btn-outline-danger ml-2">Logout</button>
