@@ -1,34 +1,41 @@
-@extends('Users.Customer.layouts.app')
+@extends('Users.Caregiver.layouts.app')
 
 @section('title')
     Update Profile
 @endsection
 
 @section('content')
-<div id="fh5co-services-section">
+    <div class="py-5">
     <div class="container">
-        <div class="row display-flex justify-content">
-            <div class="col-md-6 col-sm-6 col-md-offset-3">
-                <div class="animate-box">
-                    <div class="col-md-12">
-                        <h3>User Information</h3>
-                        <form action="{{ route('caregiver#saveProfile', $userData->id) }}" method="POST">
-                            @csrf
-                            <label class="userManagement">Name</label><br>
-                            <input name="name" class="input-md col-md-12" type="text" value="{{ old('name', $userData->name) }}"/>
-                            <label class="userManagement">Email</label><br>
-                            <input name='email' class="input-md col-md-12" type="text" value="{{ old('email', $userData->email) }}"/><br><br>
-                            <label class="userManagement">Working Day</label><br>
-                            <input name='working_day' class="input-md col-md-12" type="text" value="{{ old('email', $caregiverData->working_day) }}"/><br><br>
-                            <div class="text-center"> 
-                                <button type="submit" class="btn-primary">Update</button> &nbsp;
-                                <a href="{{ route('caregiver#index') }}">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">User Information</h3>
+              <form action="{{ route('caregiver#saveProfile', $userData->id) }}" method="POST">
+                @csrf
+                <div class="form-group">
+                  <label for="name" class="userManagement">Name</label>
+                  <input name="name" id="name" class="form-control" type="text" value="{{ old('name', $userData->name) }}" required>
                 </div>
+                <div class="form-group">
+                  <label for="email" class="userManagement">Email</label>
+                  <input name="email" id="email" class="form-control" type="email" value="{{ old('email', $userData->email) }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="working_day" class="userManagement">Working Day</label>
+                  <input name="working_day" id="working_day" class="form-control" type="text" value="{{ old('working_day', $caregiverData->working_day) }}" readonly>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <a href="{{ route('caregiver#index') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
 @endsection
