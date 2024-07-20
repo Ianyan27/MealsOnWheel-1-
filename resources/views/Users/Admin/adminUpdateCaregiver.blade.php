@@ -5,23 +5,28 @@
 @extends('Users.Admin.layouts.app')
 
 @section('content')
-<div id="fh5co-services-section">
+<div id="fh5co-services-section" class="py-5">
     <div class="container">
-        <div class="row display-flex justify-content">
-            <div class="col-md-6 col-sm-6 col-md-offset-3">
-                <div class="animate-box">
-                    <div class="col-md-12">
-                        <h3>User Information</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">User Information</h3>
                         <form action="{{ route('admin#updatedCaregivers', $userData->id) }}" method="POST">
                             @csrf
-                            <label class="userManagement">Name</label><br>
-                            <input name="name" class="input-md col-md-12" type="text" value="{{ old('name', $userData->name) }}"/>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" class="form-control" type="text" value="{{ old('name', $userData->name) }}" required />
+                            </div>
 
-                            <label class="userManagement">Email</label><br>
-                            <input name='email' class="input-md col-md-12" type="text" value="{{ old('email', $userData->email) }}"/><br><br>
-                            <div class="text-center"> 
-                                <button type="submit" class="btn-primary">Update</button> &nbsp;
-                                <a href="{{ route('admin#index') }}">Cancel</a>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" class="form-control" type="email" value="{{ old('email', $userData->email) }}" required />
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <a href="{{ route('admin#index') }}" class="btn btn-secondary ml-2">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -30,4 +35,5 @@
         </div>
     </div>
 </div>
+
 @endsection
