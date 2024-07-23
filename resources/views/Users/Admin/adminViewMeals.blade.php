@@ -36,7 +36,7 @@
                   <h6 class="card-subtitle mb-2 text-muted">{{ DB::table('meals')->where('caregiver_id', $meal->caregiver_id)->value('meal_name') }}</h6>
                   <p class="card-text">{{ DB::table('meals')->where('caregiver_id', $meal->caregiver_id)->value('meal_description') }}</p>
                   @if ($meal->meal_image)
-                    <img src="{{ asset('uploads/meal/'. $meal->meal_image) }}" class="img-thumbnail mb-3" alt="Meal Image">
+                    <img width="550" height="550" src="{{ asset('uploads/meal/'. $meal->meal_image) }}" class="img-thumbnail mb-3" alt="Meal Image">
                   @endif
                   @if (Auth::user()->role == 'admin')
                     <a href="{{ route('admin#updateMeal', $meal->meal_id) }}" class="btn btn-primary btn-sm">Update Meal</a>

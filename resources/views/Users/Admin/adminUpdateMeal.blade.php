@@ -19,7 +19,7 @@
           @csrf
           <div class="col-lg-6 mb-4">
             @if ($updateMeal->meal_image)
-              <img src="{{ asset('uploads/meal/'. $updateMeal->meal_image) }}" class="img-thumbnail mb-3" alt="Meal Image">
+              <img width="550" height="550" src="{{ asset('uploads/meal/'. $updateMeal->meal_image) }}" class="img-thumbnail mb-3" alt="Meal Image">
             @endif
             <div class="form-group">
               <label for="meal_image">Meal Image</label>

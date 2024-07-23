@@ -13,7 +13,7 @@
                 <input type="hidden" name="meal_id" value="{{ $mealData->meal_id }}">
 
                 <div class="form-group">
-                    <label for="name">Name (Optional)</label>
+                    <label for="name">Name:</label>
                     <input id="name" type="text" name="name" class="form-control" value=" {{ Auth::user()->name }} " readonly>
                 </div>
 

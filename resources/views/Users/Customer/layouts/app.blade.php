@@ -53,8 +53,7 @@
                 <p class="mb-0">Copyright 2022 MerryMeal ~ Meals on Wheels 
                   <a href="#" class="text-light">Charity</a>. All Rights Reserved. 
                   <br>Made with <i class="icon-heart3 text-danger"></i> by 
-                  <a href="http://freehtml5.co/" target="_blank" class="text-light">Group 1 DEA Team</a> / Demo Images: 
-                  <a href="https://unsplash.com/" target="_blank" class="text-light">Unsplash</a>
+                  <a href="http://freehtml5.co/" target="_blank" class="text-light">Group TeaM</a>
                 </p>
               </div>
             </div>
