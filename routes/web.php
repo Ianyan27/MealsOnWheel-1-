@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         } else if (Auth::user()->role == 'volunteer') {
             return redirect()->route('volunteer#index');
         } else if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin#index');;
+            return redirect()->route('admin#index');
         }
     }
 })->name('welcome');
