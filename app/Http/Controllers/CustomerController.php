@@ -17,10 +17,15 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customerData = Customer::where('user_id', Auth::id())->first();
-        return view('Users.Customer.customerIndex')->with(['customerData' => $customerData]);
+        $day = $request->input('day');
+
+        $mealList = Meals::when($day, function ($query, $day) {
+            return $query->where('day', $day);
+        })->get();
+
+        return view('Users.Customer.customerMealList')->with(['mealList' => $mealList]);
     }
     public function updateProfile($id)
     {

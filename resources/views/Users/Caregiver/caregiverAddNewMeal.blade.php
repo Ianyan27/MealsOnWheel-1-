@@ -6,7 +6,6 @@
 
 @section('content')
 <div id="fh5co-blog-section" class="py-5 bg-light">
-    <div class="container">
       <div class="row mb-4">
         <div class="col-lg-6">
           <h1>Start Creating Your Own Menu!</h1>
@@ -58,6 +57,5 @@
           </form>
         </div>
       </div>
-    </div>
   </div>  
 @endsection

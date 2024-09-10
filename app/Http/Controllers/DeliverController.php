@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Deliver;
+use App\Models\DeliveryRequest;
 use App\Models\Orders;
 use App\Models\Volunteers;
 use Carbon\Carbon;
@@ -17,8 +18,11 @@ class DeliverController extends Controller
      */
     public function index()
     {
-        $deliverData = Deliver::where('user_id', Auth::id())->first();
-        return view('Users.Deliver.deliverIndex')->with(['deliverData' => $deliverData]);
+        $deliver_data = DeliveryRequest::all();
+
+        return view('Users.Deliver.deliverOrder')->with([
+            'deliveryData' => $deliver_data,
+        ]);
     }
 
 

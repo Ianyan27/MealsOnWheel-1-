@@ -10,13 +10,11 @@
     $caregiver_user_id = DB::table('caregivers')->where('caregiver_id', $caregiver_id)->value('user_id');
     ?>
     <div id="fh5co-blog-section" class="fh5co-section-gray py-5">
-        <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center heading-section animate-box mb-4">
                     <h1>{{ $mealData->meal_name }}</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="jumbotron animate-box p-4">
@@ -50,6 +48,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 @endsection

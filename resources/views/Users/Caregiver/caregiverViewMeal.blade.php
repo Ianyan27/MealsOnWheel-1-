@@ -6,7 +6,6 @@
 
 @section('content')
 <div id="fh5co-blog-section" class="py-5 bg-light">
-    <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 text-center">
           <h1>{{ $viewMeal->meal_name }}</h1>
@@ -36,5 +35,4 @@
         </div>
       </div>
     </div>
-</div>
 @endsection
