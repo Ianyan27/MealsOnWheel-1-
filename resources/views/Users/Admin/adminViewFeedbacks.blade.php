@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($feedbackData as $feedback)
+                @forelse ($feedbackData as $feedback)
                 <tr>
                     <td>
                         <input type="text" name="feedbackId" value="{{ $feedback->feedback_id }}" class="form-control" readonly>
@@ -27,7 +27,11 @@
                         <input type="text" name="feedback" value="{{ $feedback->feedback }}" class="form-control">
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="text-center">
+                    <td colspan="3">No Feedbacks Found.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
